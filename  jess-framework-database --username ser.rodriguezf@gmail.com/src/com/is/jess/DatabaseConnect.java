@@ -43,7 +43,7 @@ public class DatabaseConnect implements Userfunction {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			return Funcall.TRUE;
 		}
-		else {session.close(); return Funcall.FALSE;}
+		else {return Funcall.FALSE;}
 		
 	}
 
