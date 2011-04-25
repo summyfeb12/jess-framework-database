@@ -1,8 +1,10 @@
 package com.is.students;
 
-import java.util.List;
-import java.util.Iterator;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -12,90 +14,38 @@ import com.is.util.HibernateUtil;
 public class Main {
 
 	public static void main(String[] args) {
-		Main obj = new Main();
-		@SuppressWarnings("unused")
-		Long studentId1 = obj.saveStudent("Manuel");
-		Long studentId2 = obj.saveStudent("Paco");
-		Long studentId3 = obj.saveStudent("Matias");
-		obj.listStudents();
-		obj.updateCourse(studentId3, "Raul");
-		obj.deleteCourse(studentId2);
-		obj.listStudents();
-		SaveStudent ejemplo = new SaveStudent();
-	}
-	
-	public Long saveStudent(String StudentName)
-	{
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
-		Long studentId = null;
-		try {
-			transaction = session.beginTransaction();
-			Students student = new Students();
-			student.setStudentName(StudentName);
-			studentId = (Long) session.save(student);
-			transaction.commit();
-		} catch (HibernateException e) {
-			transaction.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return studentId;
-	}
-	
-	public void listStudents()
-	{
+
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
-			List students = session.createQuery("from Students").list();
-			for (Iterator iterator = students.iterator(); iterator.hasNext();)
-			{
-				Students course = (Students) iterator.next();
-				System.out.println(course.getStudentName());
-			}
-			transaction.commit();
-		} catch (HibernateException e) {
-			transaction.rollback();
-			e.printStackTrace();
+
+			Set<Course> courses = new HashSet<Course>();
+			courses.add(new Course("Maths"));
+			courses.add(new Course("Computer Science"));
+
+			Student student1 = new Student("Eswar", courses);
+			Student student2 = new Student("Joe", courses);
+			session.save(student1);
+			session.save(student2);
+			 try {
+                
+                 List list = session.createQuery("from Student").list();
+                 for (Iterator iterator = list.iterator(); iterator.hasNext();)
+                 {
+                         Student instance = (Student) iterator.next();
+                         System.out.println(instance.getStudentName());
+                         //r.definstance(classNameLower, instance, true, context);
+                 }
+                 transaction.commit();
+         } catch (HibernateException e) {
+                 transaction.rollback();
+                 e.printStackTrace();
+         }
+		
 		} finally {
 			session.close();
 		}
-	}
-	
-	public void updateCourse(Long courseId, String courseName)
-	{
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
-		try {
-			transaction = session.beginTransaction();
-			Students course = (Students) session.get(Students.class, courseId);
-			course.setStudentName(courseName);
-			transaction.commit();
-		} catch (HibernateException e) {
-			transaction.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-	}
-	
-	public void deleteCourse(Long courseId)
-	{
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
-		try {
-			transaction = session.beginTransaction();
-			Students course = (Students) session.get(Students.class, courseId);
-			session.delete(course);
-			transaction.commit();
-		} catch (HibernateException e) {
-			transaction.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
+
 	}
 }
