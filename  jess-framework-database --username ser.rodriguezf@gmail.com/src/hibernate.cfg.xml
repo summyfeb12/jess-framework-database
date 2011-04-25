@@ -11,7 +11,8 @@
         <property name="connection.pool_size">1</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">create</property>
-        <mapping resource="com/is/students/students.hbm.xml"/>
+        <property name="hbm2ddl.auto">update</property>
+        <mapping class="com.is.students.Student" />
+        <mapping class="com.is.students.Course" />
     </session-factory>
 </hibernate-configuration>
