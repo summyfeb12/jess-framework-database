@@ -20,7 +20,7 @@
         (for (bind ?i 2) (<= ?i ?length) (++ ?i)
             ;(bind ?course (new Course))
             (if (= (bind ?flag (call Operation isCourse (nth$ ?i $?args))) 1) then 
-            	(bind ?course-aux (call Operation Seek (nth$ ?i $?args)))
+            	(bind ?course-aux (call Operation seek (nth$ ?i $?args)))
             	;(call ?course setCourseName (nth$ ?i $?args))
             	(call ?listofcourse add ?course-aux)
                 ;(bind flag 1)
@@ -30,7 +30,7 @@
         (if (> (bind ?size (call ?listofcourse size)) 0) then 
         	(bind ?studentobject (new Student ?student ?listofcourse))
         	(bind ?operation (new Operation ?studentobject))
-        	(call ?operation Save)
+        	(call ?operation save)
             (bind ?id (call ?operation getId))
             (call ?studentobject setStudentId ?id)
             (add ?studentobject)
@@ -47,7 +47,7 @@
             then (bind ?courseobject (new Course))
             (call ?courseobject setCourseName ?courseName)
             (bind ?operation-course (new Operation ?courseobject))
-            (call ?operation-course Save)
+            (call ?operation-course save)
             (bind ?id-course (call ?operation-course getId))
             (call ?courseobject setCourseId ?id-course)
             (add ?courseobject)
@@ -67,6 +67,6 @@
 )
 
 
-;(setfact "Juanillo" "Ciencias" "Maths")
-;(facts)
+(setfact "Juanillo" "Ciencias" "Maths")
+(facts)
 
