@@ -1,7 +1,7 @@
 (import com.is.students.*)
 (import com.is.jess.*)
 
-(deftemplate students (slot student-name))
+;(deftemplate students (slot student-name))
 ;(load-function DatabaseConnect)
 ;(database-connect "/localhost/DB" "DB" "MySQL" "root" "")
 ;(load-function SaveStudent)
@@ -12,6 +12,8 @@
 
 (load-function LoadDatabase);
 (load-database);
-;(assert (student (studentName juan)))
+;(assert (student (studentId 123)(courses "Computer Science")(studentName "juan")))
 ;(assert (course (courseName matematicas)))
 (facts)
+;(show-deftemplates)
+;(ppdeftemplate students)
