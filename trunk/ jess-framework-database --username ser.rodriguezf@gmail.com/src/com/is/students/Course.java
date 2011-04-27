@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name="COURSE")
 public class Course {
 
-	private long courseId;
+	private Long courseId;
 	private String courseName;
 
 	public Course() {
@@ -23,11 +23,11 @@ public class Course {
 	@Id
 	@GeneratedValue
 	@Column(name="COURSE_ID")
-	public long getCourseId() {
+	public Long getCourseId() {
 		return this.courseId;
 	}
 
-	public void setCourseId(long courseId) {
+	public void setCourseId(Long courseId) {
 		this.courseId = courseId;
 	}
 
