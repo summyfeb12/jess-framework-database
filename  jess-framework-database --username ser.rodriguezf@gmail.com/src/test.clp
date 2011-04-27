@@ -10,10 +10,18 @@
 
 ;(facts)
 
-(load-function LoadDatabase);
-(load-database);
+(load-function LoadDatabase)
+(load-database)
 ;(assert (student (studentId 123)(courses "Computer Science")(studentName "juan")))
 ;(assert (course (courseName matematicas)))
+(load-function SetFact)
+;(setfact course "Electricitate si Magnetism")
+
+(load-function ModifyFact)
+(load-function DeleteFact)
+;(deletefact "course" 90)
+(modifyfact student 5  "Marco" "Mates" "S")
+;(setfact student "Juan Macho" "Maths" "ComputerScience")
 (facts)
 ;(show-deftemplates)
 ;(ppdeftemplate students)

@@ -22,12 +22,18 @@ public class Main {
 
 			Set<Course> courses = new HashSet<Course>();
 			courses.add(new Course("Maths"));
-			courses.add(new Course("Computer Science"));
+			courses.add(new Course("ComputerScience"));
+			courses.add(new Course("IntelligentSystems"));
+			courses.add(new Course("PDU"));
 
 			Student student1 = new Student("Eswar", courses);
 			Student student2 = new Student("Joe", courses);
+			Student student3 = new Student("Marco", courses);
+			Student student4 = new Student("Toni", courses);
 			session.save(student1);
 			session.save(student2);
+			session.save(student3);
+			session.save(student4);
 			 try {
                 
                  List list = session.createQuery("from Student").list();

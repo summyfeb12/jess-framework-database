@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "STUDENT")
 public class Student {
 
-	private long studentId;
+	private Long studentId;
 	private String studentName;
 	private Set<Course> courses = new HashSet<Course>(0);
 
@@ -36,11 +36,11 @@ public class Student {
 	@Id
 	@GeneratedValue
 	@Column(name = "STUDENT_ID")
-	public long getStudentId() {
+	public Long getStudentId() {
 		return this.studentId;
 	}
 
-	public void setStudentId(long studentId) {
+	public void setStudentId(Long studentId) {
 		this.studentId = studentId;
 	}
 
